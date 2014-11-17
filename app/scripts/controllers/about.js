@@ -2,16 +2,17 @@
 
 /**
  * @ngdoc function
- * @name morrealeWebApp.controller:MainCtrl
+ * @name morrealeWebApp.controller:AboutController
  * @description
- * # MainCtrl
+ * # AboutController
  * Controller of the morrealeWebApp
  */
 angular.module('morrealeWebApp')
-  .controller('MainCtrl', ["$scope", MainCtrl]);
+  .controller('AboutController', ["$scope", AboutController]);
 
-function MainCtrl($scope) {
-     $scope.items = [
+function AboutController($scope) {
+
+    $scope.items = [
       {
         name: "HTML5 Boilerplate",
         description: "HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites."
