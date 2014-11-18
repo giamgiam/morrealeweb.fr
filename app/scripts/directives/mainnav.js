@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc directive
@@ -11,28 +11,25 @@ angular.module('morrealeWebApp')
     return {
       templateUrl: 'views/main-nav.html',
       restrict: 'E',
-      controller: function($scope, $rootScope, $location, $http) {
-        var self = this
+      controller: function($scope, $rootScope, $location, $firebase) {
+        var self = this,
+            ref = new Firebase("https://burning-inferno-228.firebaseio.com/").child("pages"),
+            sync = $firebase(ref)
+
             self.currentPage = "/"
             self.setCurrentPage = function(path) {
               self.currentPage = path
             }
             self.isSetCurrentPage = function(path) {
-              return self.currentPage === path;
+              return self.currentPage === path
             }
 
-        $http.get("/data/sitemap.json")
-              .success(function(data, status, headers, config){
-                  $scope.pages = data.pages;
-              })
-              .error(function(data, status, headers, config){
-                console.error("Data not found!!!")
-              })
+        $scope.pages = sync.$asObject()
 
         $rootScope.$on("$routeChangeSuccess", function(evt, args) {
             self.setCurrentPage($location.path())
         })
       },
       controllerAs: "mainNav"
-    };
-  });
+    }
+  })

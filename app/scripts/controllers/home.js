@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc function
@@ -8,11 +8,24 @@
  * Controller of the morrealeWebApp
  */
 angular.module('morrealeWebApp')
-  .controller('HomeController', ["$scope", HomeController]);
+  .controller('HomeController', ["$scope", "Page", HomeController])
 
-function HomeController($scope) {
+function HomeController($scope, Page) {
+    var page = Page("home")
 
-    $scope.items = [
+    $scope.node = page.$asObject()
+
+    $scope.addContent = function() {
+      var content = $scope.content
+
+      console.log(content)
+
+      page.$update(content)
+
+      $scope.content = ""
+    }
+
+    /*$scope.items = [
       {
         name: "HTML5 Boilerplate",
         description: "HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites."
@@ -25,7 +38,7 @@ function HomeController($scope) {
         name: "Karma",
         description: "Spectacular Test Runner for JavaScript."
       }
-    ];
+    ]
 
-    $scope.title = "Hello world"
+    $scope.title = "Hello world"*/
 }

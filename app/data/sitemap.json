@@ -1,18 +1,18 @@
 {
   "pages": {
-    "home" : {
+    "0" : {
       "path" : "/",
       "title" : "Home"
     },
-    "about": {
+    "1": {
       "path": "/about",
       "title": "About me"
     },
-    "contact": {
+    "2" : {
       "path": "/contact",
       "title": "Contact me"
     },
-    "Z": {
+    "3" : {
       "title": "Z"
     }
   }

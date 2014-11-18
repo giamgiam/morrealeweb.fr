@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc function
@@ -8,7 +8,7 @@
  * Controller of the morrealeWebApp
  */
 angular.module('morrealeWebApp')
-  .controller('AboutController', ["$scope", AboutController]);
+  .controller('AboutController', ["$scope", AboutController])
 
 function AboutController($scope) {
 
@@ -25,7 +25,7 @@ function AboutController($scope) {
         name: "Karma",
         description: "Spectacular Test Runner for JavaScript."
       }
-    ];
+    ]
 
     $scope.title = "Hello world"
 }
