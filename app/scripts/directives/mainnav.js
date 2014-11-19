@@ -9,7 +9,7 @@
 angular.module('morrealeWebApp')
   .directive('mainNav', function () {
     return {
-      templateUrl: 'views/main-nav.html',
+      templateUrl: 'views/directives/main-nav.html',
       restrict: 'E',
       controller: function($scope, $rootScope, $location, DataBase) {
         var nav = DataBase("pages")

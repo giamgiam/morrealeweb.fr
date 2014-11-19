@@ -9,7 +9,7 @@
 angular.module('morrealeWebApp')
   .directive('commentSection', function () {
     return {
-      templateUrl: 'views/comment-section.html',
+      templateUrl: 'views/directives/comment-section.html',
       restrict: 'E',
       controller: function($scope, DataBase, $location) {
         var  comments = DataBase($location.path()+"/comments")
