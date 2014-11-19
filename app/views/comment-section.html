@@ -1,0 +1,32 @@
+<div class="row marketing" ng-repeat="(id, comment) in node.comments">
+  <h4>{{comment.title}}</h4>
+  <p>{{comment.text}}</p>
+
+  <form ng-submit="removeComment(id)" novalidate>
+    <div class="form-group pull-right">
+      <input class="btn btn-danger" type="submit" value="Remove">
+    </div>
+  </form>
+</div>
+
+<form class="form form-horizontal" ng-submit="addComment()" novalidated>
+  <input type="hidden" ng-model="content.id">
+  <div class="form-group">
+    <label for="contentTitle" class="control-label col-sm-2">Title : </label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="contentTitle" ng-model="newComment.title" placeholder="title">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="contentText" class="control-label col-sm-2">Text : </label>
+    <div class="col-sm-10">
+      <textarea class="form-control" id="contentText" ng-model="newComment.text" placeholder="content">
+      </textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="submit" class="btn btn-primary" value="Add content">
+    </div>
+  </div>
+</form>

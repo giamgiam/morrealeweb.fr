@@ -34,7 +34,7 @@ angular
 
     $locationProvider.html5Mode(true)
   })
-  .factory("Page", [ "$firebase", function($firebase) {
+  .factory("DataBase", [ "$firebase", function($firebase) {
       return function(page) {
         var ref = new Firebase("https://burning-inferno-228.firebaseio.com/").child(page)
 
