@@ -11,34 +11,20 @@ angular.module('morrealeWebApp')
   .controller('HomeController', ["$scope", "Page", HomeController])
 
 function HomeController($scope, Page) {
-    var page = Page("home")
+    var page = Page("home"),
+        items = Page("home/items")
 
     $scope.node = page.$asObject()
 
     $scope.addContent = function() {
       var content = $scope.content
 
-      console.log(content)
-
-      page.$update(content)
-
+      items.$push(content)
       $scope.content = ""
     }
 
-    /*$scope.items = [
-      {
-        name: "HTML5 Boilerplate",
-        description: "HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites."
-      },
-      {
-        name: "Angular",
-        description: "AngularJS is a toolset for building the framework most suited to your application development."
-      },
-      {
-        name: "Karma",
-        description: "Spectacular Test Runner for JavaScript."
-      }
-    ]
-
-    $scope.title = "Hello world"*/
+    $scope.removeContent = function(id) {
+      console.log(id)
+      // items.$remove(item)
+    }
 }

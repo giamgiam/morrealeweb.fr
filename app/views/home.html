@@ -1,12 +1,19 @@
 <div class="container">
   <h2>{{node.title}}</h2>
 
-  <div class="row marketing" ng-repeat="item in node.items">
+  <div class="row marketing" ng-repeat="(id, item) in node.items">
     <h4>{{item.title}}</h4>
     <p>{{item.text}}</p>
+
+    <form ng-submit="removeContent(item)" novalidate>
+      <div class="form-group pull-right">
+        <input class="btn btn-danger" type="submit" value="Remove">
+      </div>
+    </form>
   </div>
 
   <form class="form form-horizontal" ng-submit="addContent()" novalidated>
+    <input type="hidden" ng-model="content.id">
     <div class="form-group">
       <label for="contentTitle" class="control-label col-sm-2">Title : </label>
       <div class="col-sm-5">

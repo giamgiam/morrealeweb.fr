@@ -36,7 +36,6 @@ angular
   })
   .factory("Page", [ "$firebase", function($firebase) {
       return function(page) {
-
         var ref = new Firebase("https://burning-inferno-228.firebaseio.com/").child(page)
 
         return $firebase(ref)
