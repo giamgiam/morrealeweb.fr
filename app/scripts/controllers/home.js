@@ -15,16 +15,16 @@ function HomeController($scope, Page) {
         items = Page("home/items")
 
     $scope.node = page.$asObject()
+    $scope.items = items
 
     $scope.addContent = function() {
       var content = $scope.content
 
-      items.$push(content)
+      $scope.items.$push(content)
       $scope.content = ""
     }
 
     $scope.removeContent = function(id) {
-      console.log(id)
-      // items.$remove(item)
+      $scope.items.$remove(id)
     }
 }

@@ -1,5 +1,5 @@
 <ul class="nav nav-pills pull-right">
-  <li ng-repeat="page in pages" ng-class="{active: mainNav.isSetCurrentPage(page.path)}">
+  <li ng-repeat="page in pages" ng-class="{active: isSetCurrentPage(page.path)}">
     <a ng-href="{{page.path}}">{{page.title}}</a>
   </li>
 </ul>
