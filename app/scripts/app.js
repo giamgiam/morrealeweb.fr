@@ -30,15 +30,15 @@ angular
       })
       .otherwise({
         templateUrl: 'views/404.html'
-      })
+      });
 
-    $locationProvider.html5Mode(true)
+    $locationProvider.html5Mode(true);
   })
   .factory("DataBase", [ "$firebase", function($firebase) {
       return function(page) {
-        var ref = new Firebase("https://burning-inferno-228.firebaseio.com/").child(page)
+        var ref = new Firebase("https://burning-inferno-228.firebaseio.com/").child(page);
 
-        return $firebase(ref)
+        return $firebase(ref);
       }
     }
-  ])
+  ]);

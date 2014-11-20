@@ -11,7 +11,7 @@ angular.module('morrealeWebApp')
   .controller('HomeController', ["$scope", "DataBase", HomeController])
 
 function HomeController($scope, DataBase) {
-    var page = DataBase("home")
+    var page = DataBase("home");
 
-    $scope.node = page.$asObject()
+    $scope.node = page.$asObject();
 }

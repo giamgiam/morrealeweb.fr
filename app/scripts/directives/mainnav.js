@@ -12,21 +12,21 @@ angular.module('morrealeWebApp')
       templateUrl: 'views/directives/main-nav.html',
       restrict: 'E',
       controller: function($scope, $rootScope, $location, DataBase) {
-        var nav = DataBase("pages")
+        var nav = DataBase("pages");
 
-        $scope.pages = nav.$asObject()
-        $scope.currentPage = "/"
+        $scope.pages = nav.$asObject();
+        $scope.currentPage = "/";
         $scope.setCurrentPage = function(path) {
-          $scope.currentPage = path
+          $scope.currentPage = path;
         }
         $scope.isSetCurrentPage = function(path) {
-          return $scope.currentPage === path
+          return $scope.currentPage === path;
         }
 
         $rootScope.$on("$routeChangeSuccess", function(evt, args) {
-            $scope.setCurrentPage($location.path())
+            $scope.setCurrentPage($location.path());
         })
       },
       controllerAs: "mainNav"
     }
-  })
+  });

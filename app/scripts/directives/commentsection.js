@@ -12,19 +12,19 @@ angular.module('morrealeWebApp')
       templateUrl: 'views/directives/comment-section.html',
       restrict: 'E',
       controller: function($scope, DataBase, $location) {
-        var  comments = DataBase($location.path()+"/comments")
+        var  comments = DataBase($location.path()+"/comments");
 
-        $scope.comments = comments
+        $scope.comments = comments;
         $scope.addComment = function() {
-          console.log(newComment)
-          var newComment = $scope.newComment
+          console.log(newComment);
+          var newComment = $scope.newComment;
 
-          $scope.comments.$push(newComment)
-          $scope.newComment = ""
+          $scope.comments.$push(newComment);
+          $scope.newComment = "";
         }
 
         $scope.removeComment = function(id) {
-          $scope.comments.$remove(id)
+          $scope.comments.$remove(id);
         }
       }
     };
