@@ -1,16 +1,16 @@
-'use strict'
+"use strict"
 
 /**
  * @ngdoc function
- * @name morrealeWebApp.controller:HomeController
+ * @name morrealeWebApp.controller:HomeCtrl
  * @description
- * # HomeController
+ * # HomeCtrl
  * Controller of the morrealeWebApp
  */
-angular.module('morrealeWebApp')
-  .controller('HomeController', ["$scope", "DataBase", HomeController])
+angular.module("morrealeWebApp")
+  .controller("HomeCtrl", ["$scope", "DataBase", HomeCtrl]);
 
-function HomeController($scope, DataBase) {
+function HomeCtrl($scope, DataBase) {
     var page = DataBase("home");
 
     $scope.node = page.$asObject();

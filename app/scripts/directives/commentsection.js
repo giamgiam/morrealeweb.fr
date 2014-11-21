@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /**
  * @ngdoc directive
@@ -6,17 +6,16 @@
  * @description
  * # commentSection
  */
-angular.module('morrealeWebApp')
-  .directive('commentSection', function () {
+angular.module("morrealeWebApp")
+  .directive("commentSection", function () {
     return {
-      templateUrl: 'views/directives/comment-section.html',
-      restrict: 'E',
+      templateUrl: "views/directives/comment-section.html",
+      restrict: "E",
       controller: function($scope, DataBase, $location) {
-        var  comments = DataBase($location.path()+"/comments");
+        var  comments = new DataBase($location.path()+"/comments");
 
         $scope.comments = comments;
         $scope.addComment = function() {
-          console.log(newComment);
           var newComment = $scope.newComment;
 
           $scope.comments.$push(newComment);

@@ -1,4 +1,4 @@
-'use strict'
+"use strict"
 
 /**
  * @ngdoc directive
@@ -6,11 +6,11 @@
  * @description
  * # mainNav
  */
-angular.module('morrealeWebApp')
-  .directive('mainNav', function () {
+angular.module("morrealeWebApp")
+  .directive("mainNav", function () {
     return {
-      templateUrl: 'views/directives/main-nav.html',
-      restrict: 'E',
+      templateUrl: "views/directives/main-nav.html",
+      restrict: "E",
       controller: function($scope, $rootScope, $location, DataBase) {
         var nav = DataBase("pages");
 
@@ -23,7 +23,7 @@ angular.module('morrealeWebApp')
           return $scope.currentPage === path;
         }
 
-        $rootScope.$on("$routeChangeSuccess", function(evt, args) {
+        $rootScope.$on("$routeChangeSuccess", function() {
             $scope.setCurrentPage($location.path());
         })
       },

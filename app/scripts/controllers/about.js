@@ -1,16 +1,16 @@
-'use strict'
+"use strict"
 
 /**
  * @ngdoc function
- * @name morrealeWebApp.controller:AboutController
+ * @name morrealeWebApp.controller:AboutCtrl
  * @description
- * # AboutController
+ * # AboutCtrl
  * Controller of the morrealeWebApp
  */
-angular.module('morrealeWebApp')
-  .controller('AboutController', ["$scope", "DataBase", AboutController])
+angular.module("morrealeWebApp")
+  .controller("AboutCtrl", ["$scope", "DataBase", AboutCtrl])
 
-function AboutController($scope, DataBase) {
+function AboutCtrl($scope, DataBase) {
   var content = DataBase("about");
 
   $scope.node = content.$asObject();
