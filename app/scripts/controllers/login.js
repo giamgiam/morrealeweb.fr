@@ -16,9 +16,14 @@ angular.module("morrealeWebApp")
     console.log(Auth)
     // Auth.
 
+    $scope.error = {
+      display: false,
+      message: null
+    }
+
     $scope.validateLogin = function () {
       var email = $scope.email,
-          password = $scope.password;
+          password = $scope.password
 
         if(email != undefined && email.length ) {
           $scope.emailEmpty = false
@@ -37,16 +42,17 @@ angular.module("morrealeWebApp")
             Auth.$authWithPassword({
               email: email,
               password: password
-            }, function (error, authData) {
-              console.log(error, authData)
+            }).then( function(authData) {
+              console.log("Logged in as: ", authData.uid, authData)
+            }).catch(function(error) {
+              console.log("Authentication failed: ", error)
+              if(error.code === "INVALID_USER") {
+                $scope.error = {
+                  display: true,
+                  message: error.message
+                }
+              }
             })
-            // Auth.$authWithPassword( login, function(error, authData) {
-            //   if(error === null) {
-            //     console.log(authData)
-            //   } else {
-            //     console.log(error)
-            //   }
-            // })
           }
     };
   }
