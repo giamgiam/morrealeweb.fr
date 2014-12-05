@@ -5,20 +5,20 @@
   <div class="row">
     <div class="col-md-6">
       <h3>Login</h3>
-      <form role="login" class="form-horizontal" ng-submit="validateLogin()" novalidate>
-        <div class="alert alert-danger" ng-show="error.display" role="alert">
-          {{ error.message }}
+      <form role="login" name="login" class="form-horizontal" ng-submit="validateLogin()" novalidate>
+        <div class="alert alert-danger" ng-show="login.error.message.length" role="alert">
+          {{ login.error.message }}
         </div>
-        <div ng-class="{ 'has-error': emailEmpty }" class="form-group">
-          <label for="userEmail"class="col-sm-2 control-label">Email</label>
+        <div ng-class="{ 'has-error': login.userEmail.$error.required || login.userEmail.$error.email || error.message.length }" class="form-group">
+          <label for="userEmail" class="col-sm-2 control-label">Email</label>
           <div class="col-sm-10">
-            <input type="email" id="userEmail" class="form-control" ng-model="email" placeholder="Email">
+            <input type="email" id="userEmail" name="userEmail" class="form-control" ng-model="userEmail" placeholder="Email">
           </div>
         </div>
-        <div ng-class="{ 'has-error': passwordEmpty }" class="form-group">
-          <label for="userPassword"class="col-sm-2 control-label">Password</label>
+        <div ng-class="{ 'has-error': login.userPassword.$error.required || error.message.length }" class="form-group">
+          <label for="userPassword" class="col-sm-2 control-label">Password</label>
           <div class="col-sm-10">
-            <input type="password" id="userPassword" class="form-control" ng-model="password" placeholder="password">
+            <input type="password" id="userPassword" name="userPassword" class="form-control" ng-model="userPassword" placeholder="Password">
           </div>
         </div>
         <div class="form-group">
@@ -30,7 +30,34 @@
     </div>
     <div class="col-md-6">
       <h3>Create account</h3>
+      <form role="create-user" name="createNewUser" class="form-horizontal" ng-submit="createAccount()" novalidate>
+        <div class="alert alert-danger" ng-show="createNewUser.error.message.length" role="alert">
+          {{ createNewUser.error.message }}
+        </div>
+        <div ng-class="{ 'has-error': createNewUser.createEmail.$error.required || createNewUser.createEmail.$error.email }" class="form-group">
+          <label for="createEmail" class="col-sm-2 control-label">Email</label>
+          <div class="col-sm-10">
+            <input type="email" id="createEmail" name="createEmail" class="form-control" ng-model="createEmail" placeholder="Your email">
+          </div>
+        </div>
+        <div ng-class="{ 'has-error': createNewUser.createPassword.$error.required || createPassword != verifyPassword }" class="form-group">
+          <label for="Password" class="col-sm-2 control-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" id="createPassword" name="createPassword" class="form-control" ng-model="createPassword" placeholder="Enter your Password">
+          </div>
+        </div>
+        <div ng-class="{ 'has-error': createNewUser.verifyPassword.$error.required || verifyPassword != createPassword }" class="form-group">
+          <label for="verifyPassword" class="col-sm-2 control-label">Confirm password</label>
+          <div class="col-sm-10">
+            <input type="password" id="verifyPassword" name="verifyPassword" class="form-control" ng-model="verifyPassword" placeholder="Verify your Password">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <input type="submit" class="btn btn-primary" value="Create">
+          </div>
+        </div>
+      </form>
     </div>
   </div>
-  {{ auth }}
 </div>
