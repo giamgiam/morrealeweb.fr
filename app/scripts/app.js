@@ -19,8 +19,6 @@ angular
     "ngTouch"
   ])
   .run(["$rootScope", "$location", "AuthScopeUtil", function ($rootScope, $location, AuthScopeUtil) {
-      AuthScopeUtil($rootScope)
-
       $rootScope.$on("$routeChangeError", function (event, next, previous, error) {
         if(error === "AUTH_REQUIRED")
           $location.path("/login");
@@ -87,18 +85,11 @@ angular
       return function($scope) {
         $scope.auth = Auth;
         $scope.authData = $scope.auth.$getAuth();
+        $scope.user = ($scope.authData) ? $scope.authData.uid : "";
 
         $scope.unauth = function() {
           return $scope.auth.$unauth()
         };
-
-        $scope.onAuth = $scope.auth.$onAuth(function(authData) {
-          if(authData) {
-            $scope.user = $scope.authData.uid;
-          }else {
-            $location.path("/");
-          }
-        });
       }
     }
   ])

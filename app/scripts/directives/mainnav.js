@@ -11,13 +11,20 @@ angular.module("morrealeWebApp")
     return {
       templateUrl: "views/directives/main-nav.html",
       restrict: "E",
-      controller: function($scope, $rootScope, $location, DataBase) {
+      controller: function($scope, $rootScope, $location, DataBase, Auth, AuthScopeUtil) {
         var nav = DataBase("pages");
-
-        console.log($scope)
 
         $scope.pages = nav.$asObject();
         $scope.currentPage = "/";
+
+        Auth.$onAuth(function(authData) {
+          if(authData) {
+            AuthScopeUtil($scope);
+          } else {
+            AuthScopeUtil($scope);
+            $location.path("/login");
+          }
+        })
 
         $scope.setCurrentPage = function(path) {
           $scope.currentPage = path;
