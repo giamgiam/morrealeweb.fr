@@ -14,8 +14,11 @@ angular.module("morrealeWebApp")
       controller: function($scope, $rootScope, $location, DataBase) {
         var nav = DataBase("pages");
 
+        console.log($scope)
+
         $scope.pages = nav.$asObject();
         $scope.currentPage = "/";
+
         $scope.setCurrentPage = function(path) {
           $scope.currentPage = path;
         }

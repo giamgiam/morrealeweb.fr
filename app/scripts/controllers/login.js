@@ -8,12 +8,9 @@
  * Controller of the morrealeWebApp
  */
 angular.module("morrealeWebApp")
-  .controller("LoginCtrl", ["$scope", "Auth", LoginCtrl]);
+  .controller("LoginCtrl", ["$scope", "$location", "Auth", LoginCtrl]);
 
-  function LoginCtrl($scope, Auth) {
-    $scope.auth = Auth;
-    $scope.user = $scope.auth.$getAuth();
-
+  function LoginCtrl($scope, $location, Auth) {
     $scope.validateLogin = function () {
       if($scope.login.$dirty && $scope.login.userEmail.$valid && $scope.login.userPassword.$valid ) {
         Auth.$authWithPassword({
@@ -21,6 +18,7 @@ angular.module("morrealeWebApp")
           password: $scope.login.userPassword.$viewValue
         }).then( function(authData) {
           console.log("Logged in as: ", authData.uid, authData)
+          $location.path("/add")
         }).catch(function(error) {
           console.log("Authentication failed: ", error)
           $scope.login.error = {
@@ -38,7 +36,7 @@ angular.module("morrealeWebApp")
         }
       }
 
-      if($scope.createNewUser.$dirty && 
+      if($scope.createNewUser.$dirty &&
         $scope.createNewUser.createEmail.$valid &&
         $scope.createNewUser.createPassword.$valid &&
         $scope.createNewUser.verifyPassword.$valid) {
@@ -50,6 +48,7 @@ angular.module("morrealeWebApp")
           })
         }).then( function(authData) {
           console.log("Logged in as: ", authData.uid, authData)
+          $location.path("/add")
         }).catch(function(error) {
           console.log("Authentication failed: ", error)
           if(error.code === "INVALID_USER") {

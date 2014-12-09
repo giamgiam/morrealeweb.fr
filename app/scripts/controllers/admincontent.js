@@ -11,5 +11,5 @@ angular.module("morrealeWebApp")
   .controller("AdminContentCtrl", ["$scope", "currentAuth", AdminContentCtrl]);
 
   function AdminContentCtrl ($scope, currentAuth) {
-
+    
   }

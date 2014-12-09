@@ -18,7 +18,9 @@ angular
     "ngSanitize",
     "ngTouch"
   ])
-  .run(["$rootScope", "$location", function ($rootScope, $location) {
+  .run(["$rootScope", "$location", "AuthScopeUtil", function ($rootScope, $location, AuthScopeUtil) {
+      AuthScopeUtil($rootScope)
+
       $rootScope.$on("$routeChangeError", function (event, next, previous, error) {
         if(error === "AUTH_REQUIRED")
           $location.path("/login");
@@ -37,14 +39,19 @@ angular
       })
       .when("/login", {
         templateUrl: "views/pages/login.html",
-        controller: "LoginCtrl"
+        controller: "LoginCtrl",
+        resolve: {
+          "currentAuth": ["Auth", function(Auth) {
+            return Auth.$waitForAuth();
+          }]
+        }
       })
-      .when("/admin/add", {
+      .when("/add", {
         templateUrl: "views/admin/content.html",
         controller: "AdminContentCtrl",
         resolve: {
           "currentAuth": ["Auth", function(Auth) {
-            return Auth.$waitForAuth();
+            return Auth.$requireAuth();
           }]
         }
       })
@@ -63,19 +70,36 @@ angular
 
     $locationProvider.html5Mode(true);
   })
-  .factory("DataBase", [ "GLOBAL", "$firebase", function(GLOBAL, $firebase) {
+  .factory("DataBase", [ "FIREBASE_URL", "$firebase", function(FIREBASE_URL, $firebase) {
       return function(page) {
-        var ref = new Firebase(GLOBAL.firebaseUrl).child(page);
+        var ref = new Firebase(FIREBASE_URL).child(page);
 
         return $firebase(ref);
       }
     }
   ])
-  .factory("Auth", ["GLOBAL", "$firebaseAuth", function (GLOBAL, $firebaseAuth) {
-      var ref = new Firebase(GLOBAL.firebaseUrl);
+  .factory("Auth", ["FIREBASE_URL", "$firebaseAuth", function (FIREBASE_URL, $firebaseAuth) {
+      var ref = new Firebase(FIREBASE_URL);
       return $firebaseAuth(ref)
     }
   ])
-  .constant("GLOBAL", {
-    firebaseUrl : "https://burning-inferno-228.firebaseio.com/"
-  });
+  .factory("AuthScopeUtil", ["Auth", "$location", function(Auth, $location) {
+      return function($scope) {
+        $scope.auth = Auth;
+        $scope.authData = $scope.auth.$getAuth();
+
+        $scope.unauth = function() {
+          return $scope.auth.$unauth()
+        };
+
+        $scope.onAuth = $scope.auth.$onAuth(function(authData) {
+          if(authData) {
+            $scope.user = $scope.authData.uid;
+          }else {
+            $location.path("/");
+          }
+        });
+      }
+    }
+  ])
+  .constant("FIREBASE_URL", "https://burning-inferno-228.firebaseio.com/");

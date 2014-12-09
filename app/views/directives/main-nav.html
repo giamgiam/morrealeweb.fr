@@ -6,5 +6,17 @@
         <a ng-href="{{page.path}}">{{page.title}}</a>
       </li>
     </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown" ng-show="authData">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ user }}</a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#" ng-click="unauth()">logout</a></li>
+        </ul>
+      </li>
+      <li ng-hide="authData">
+        <a href="/login">Login</a>
+      </li>
+    </ul>
   </div>
 </nav>
